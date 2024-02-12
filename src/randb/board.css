@@ -1,10 +1,11 @@
 
-body {
-	background-color: #02394a;
+
+table, tr, td {
+	cursor: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Triangle_illustration.svg/220px-Triangle_illustration.svg.png'), auto;
 }
 
 table, td {
-	border: 1px solid black;
+	border: 2px solid #000;
 	border-collapse: collapse;
 }
 
@@ -13,12 +14,27 @@ table, td {
 	height:100px;
 }
 
+body {
+	background-color: #e6e6ea;
+}
 .board_cell:hover {
-	background-color: #fff;
+	background-color: #dadade;
+}
+/*
+background 
+v1 02394a 013343
+*/
+
+
+.piece_triangle {
+	width: 62px;
+	height: 62px;
+}
+.piece_square {
+	width: 80px;
+	height: 80px;
 }
 
-.piece_triang {
-	width: 60px;
-	height: 60px;
-	color:red;
+#img_square, #img_triangle {
+	display: none;
 }

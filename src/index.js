@@ -27,14 +27,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-// import App from './randb/App';
-import Game from './randb/Game';
-// import reportWebVitals from './reportWebVitals';
+import Board from './randb/Board'
+import Pieces from './randb/Pieces';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Game />
+    <Pieces />
+    <Board />
   </React.StrictMode>
 );
 
