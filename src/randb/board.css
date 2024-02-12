@@ -1,0 +1,24 @@
+
+body {
+	background-color: #02394a;
+}
+
+table, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+.board_cell {
+	width:100px;
+	height:100px;
+}
+
+.board_cell:hover {
+	background-color: #fff;
+}
+
+.piece_triang {
+	width: 60px;
+	height: 60px;
+	color:red;
+}
