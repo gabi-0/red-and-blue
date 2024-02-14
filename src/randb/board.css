@@ -1,10 +1,14 @@
 
-
-table, tr, td {
-	cursor: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Triangle_illustration.svg/220px-Triangle_illustration.svg.png'), auto;
+.board-container {
+	display: inline-block;
 }
 
-table, td {
+table.board {
+	width:75vmin;
+	height:75vmin;
+}
+
+table.board, td {
 	border: 2px solid #000;
 	border-collapse: collapse;
 }
@@ -33,4 +37,9 @@ v1 02394a 013343
 .piece_square {
 	width: 80px;
 	height: 80px;
+}
+
+.board_cell img {
+	position: relative;
+	margin: auto;
 }

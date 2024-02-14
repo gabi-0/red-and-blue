@@ -4,14 +4,11 @@ import Board from './Board'
 import End from './End'
 
 
+
 export default function Logic() {
-	// var arr = [[0,1,2], [2,1,0], [1,1,1]];
-	// var state = [[0,0,0], [0,0,0], [0,0,0]];
 	const [boardState, setBoardState] = useState(0);
 	const [displayState,setDisplayState] = useState(0);
 	const [play, setPlay] = useState(1);
-
-	// setPlay(1);
 
 	function changeBits(seed, id, state) {
 		var neg = ~(3 << (id*2));
@@ -45,6 +42,6 @@ export default function Logic() {
 		setDisplayState(s);
 	}
 
-	return (<><Board board_st={displayState} fhndl={[cellClick,cellMouseEnter,cellMouseLeave]} player={play} />
-	<End boardState={boardState}/></>);
+	return (<div className='board-container'><Board board_st={displayState} fhndl={[cellClick,cellMouseEnter,cellMouseLeave]} player={play} />
+	<End boardState={boardState}/></div>);
 }

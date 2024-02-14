@@ -1,39 +1,6 @@
 
 
-// function checkWin() {
-// 	var i;
-// 	var state = [];
-// 	var st = boardState;
-// 	alert(st);
-// 	while(st) {
-// 		state.push(st & 3);
-// 		st = (st >> 2);
-// 	}
-
-// 	for(i = 0; i < 3; i++) { // check win on lines
-// 		var r = i*3;
-// 		if(state[r] === 0) continue;
-
-// 		if(state[r] === state[r+1] && state[r] === state[r+2]) win = 10 + i;
-// 	}
-
-// 	for(i = 0; i < 3; i++) { // check win on columns
-// 		if(state[i] === 0) continue;
-
-// 		if(state[i] === state[i+3] && state[i] === state[i+6]) win = 20 + i;
-// 	}
-
-// 	// check win on diagonals
-// 	if(state[4] === 0) win =; // middle elemenet should be set
-
-// 	if(state[0] === state[4] && state[4] === state[8]) win = 20;
-// 	if(state[2] === state[4] && state[4] === state[6]) win = 21;
-
-// 	win = 0;
-// }
-
-import { useState } from 'react'
-
+import './end.css'
 
 export default function End({boardState}) {
 	var i, win = 0;
@@ -63,5 +30,5 @@ export default function End({boardState}) {
 		if(state[2] === state[4] && state[4] === state[6]) win = 31;
 	}
 
-	return (<p>{win}</p>);
+	return (<div className='end-panel'></div>);
 }

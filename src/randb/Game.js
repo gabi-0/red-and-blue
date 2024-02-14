@@ -1,8 +1,14 @@
 
-import Board from './Board';
+
+import Logic from './Logic';
+import Chat from './Chat'
+import './game.css'
 
 export default function Game() {
 	return (
-	<Board />
+	<div class="game-container">
+	<Logic />
+	<Chat />
+	</div>
 	);
 }
