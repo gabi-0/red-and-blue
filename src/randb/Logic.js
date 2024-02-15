@@ -2,13 +2,32 @@
 import { useState } from 'react'
 import Board from './Board'
 import End from './End'
+import Opponent from './Opponent';
 
+
+export function getAvaiableSpots(st) {
+	var s = st;
+	var freeSpots = [];
+	for(var i = 0; i < 9; i++) {
+		if((s&3) === 0)
+			freeSpots.push(i);
+		s = (s >> 2);
+	}
+
+	return freeSpots;
+}
+
+export function playerMoves(state, playerFirst) {
+	var sp = getAvaiableSpots(state);
+	return (sp.length % 2 === playerFirst);
+}
 
 
 export default function Logic() {
-	const [boardState, setBoardState] = useState(0);
+	const [boardState, setBoardState] = useState(16777216);
 	const [displayState,setDisplayState] = useState(0);
 	const [play, setPlay] = useState(1);
+	const [playerFirst, setPlayerFirst] = useState(0);
 
 	function changeBits(seed, id, state) {
 		var neg = ~(3 << (id*2));
@@ -22,9 +41,9 @@ export default function Logic() {
 		return s;
 	}
 
-	var panelHide = false;
 	function btnStart() {
-		panelHide = true;
+		setBoardState(0);
+		setDisplayState(0);
 	}
 
 	function cellClick(id, st) {
@@ -32,6 +51,7 @@ export default function Logic() {
 
 		var s = changeBits(boardState, id, st);
 		setBoardState(s);
+		setDisplayState(s);
 	}
 
 	function cellMouseEnter(id) {
@@ -47,6 +67,10 @@ export default function Logic() {
 		setDisplayState(s);
 	}
 
-	return (<div className='board-container'><Board board_st={displayState} fhndl={[cellClick,cellMouseEnter,cellMouseLeave]} player={play} />
-	<End boardState={boardState} hideStart={panelHide} fhndl={[btnStart]} /></div>);
+	return (<div className='board-container'>
+	<Board boardSt={boardState} dispBoard={displayState}
+			fhndl={[cellClick,cellMouseEnter,cellMouseLeave]} player={play} playerFirst={playerFirst} />
+
+	<Opponent boardState={boardState} fhndl={[setPlay, setPlayerFirst, cellClick]} />
+	<End boardState={boardState} fhndl={[btnStart]} /></div>);
 }

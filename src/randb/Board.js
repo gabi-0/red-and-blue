@@ -1,4 +1,5 @@
 
+import { playerMoves } from "./Logic"
 import "./board.css"
 
 
@@ -26,10 +27,13 @@ function Row({b_st, rid, fhndl, player}) {
 	return (<tr>{cells}</tr>)
 }
 
-export default function Board({board_st, fhndl, player}) {
+export default function Board({boardSt, dispBoard, fhndl, player, playerFirst}) {
 	let rows = [];
 	for(var i = 0; i < 3; i++)
-		rows.push(<Row key={i} rid={i} b_st={board_st} fhndl={fhndl} player={player} />);
+		rows.push(<Row key={i} rid={i} b_st={dispBoard} fhndl={fhndl} player={player} />);
 
-	return (<table className="board"><tbody>{rows}</tbody></table>);
+	var tableClsName = "board";
+	if(playerMoves(boardSt, playerFirst) === false) tableClsName = "board board-wait";
+
+	return (<table className={tableClsName} ><tbody>{rows}</tbody></table>);
 }

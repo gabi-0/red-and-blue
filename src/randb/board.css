@@ -7,6 +7,12 @@
 table.board {
 	width:75vmin;
 	height:75vmin;
+	cursor:pointer;
+}
+
+table.board-wait {
+	pointer-events:none;
+	cursor:not-allowed !important;
 }
 
 table.board, td {
