@@ -5,9 +5,10 @@
 }
 
 table.board {
-	width:75vmin;
-	height:75vmin;
+	width:65vmin;
+	height:65vmin;
 	cursor:pointer;
+	background-color: #EFEFEF;
 }
 
 table.board-wait {
@@ -29,7 +30,8 @@ body {
 	background-color: #e6e6ea;
 }
 .board_cell:hover {
-	background-color: #dadade;
+	/* background-color: #dadade; */
+	background-color: #F8F8F8;
 }
 /*
 background 
@@ -49,4 +51,19 @@ v1 02394a 013343
 .board_cell img {
 	position: relative;
 	margin: auto;
+}
+
+
+.board-top-red, .board-top-blue {
+	position:absolute;
+	top:-4rem;
+	left:50%;
+	transform:translate(-50%);
+}
+
+.board-top-red {
+	color:#fe4a49;
+}
+.board-top-blue {
+	color:#2ab7ca;
 }

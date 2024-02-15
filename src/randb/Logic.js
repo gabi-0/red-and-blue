@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Board from './Board'
 import End from './End'
 import Opponent from './Opponent';
+import BoardTop from './BoardTop'
 
 
 export function getAvaiableSpots(st) {
@@ -68,9 +69,9 @@ export default function Logic() {
 	}
 
 	return (<div className='board-container'>
+	<BoardTop boardState={boardState} player={play} playerFirst={playerFirst} />
 	<Board boardSt={boardState} dispBoard={displayState}
 			fhndl={[cellClick,cellMouseEnter,cellMouseLeave]} player={play} playerFirst={playerFirst} />
-
 	<Opponent boardState={boardState} fhndl={[setPlay, setPlayerFirst, cellClick]} />
 	<End boardState={boardState} fhndl={[btnStart]} /></div>);
 }
