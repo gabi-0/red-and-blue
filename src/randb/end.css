@@ -13,10 +13,10 @@
 
 .end-content {
 	position:absolute;
-	top:10%;
+	top:5%;
 	left:10%;
 	width:80%;
-	height:80%;
+	height:90%;
 	z-index:110;
 }
 
@@ -24,8 +24,36 @@
 	text-align: center;
 }
 
+button.end-btn-red, button.end-btn-blue {
+	border:solid 1px black;
+	border-radius:0;
+	padding:0.7rem 2rem;
+	font-size:1.2rem;
+	color:white;
+	cursor:pointer;
+	min-width:7rem;
+}
+
+button.end-btn-red, button.end-btn-blue:hover {
+	background-color:#fe4a49;
+}
+button.end-btn-blue, button.end-btn-red:hover {
+	background-color:#2ab7ca;
+}
+
+#btn-top {
+	margin:0 50% 2rem 50%;
+	transform:translate(-50%);
+}
+
+#btn-right {
+	float:right;
+}
+#btn-left, #btn-right {
+	margin-top:2rem;
+}
+
 .end-transparency{
 	background-color: white;
-	opacity:0.5;
 	z-index:101;
 }

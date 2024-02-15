@@ -22,6 +22,11 @@ export default function Logic() {
 		return s;
 	}
 
+	var panelHide = false;
+	function btnStart() {
+		panelHide = true;
+	}
+
 	function cellClick(id, st) {
 		if(getBits(boardState, id)) return;
 
@@ -43,5 +48,5 @@ export default function Logic() {
 	}
 
 	return (<div className='board-container'><Board board_st={displayState} fhndl={[cellClick,cellMouseEnter,cellMouseLeave]} player={play} />
-	<End boardState={boardState} /></div>);
+	<End boardState={boardState} hideStart={panelHide} fhndl={[btnStart]} /></div>);
 }

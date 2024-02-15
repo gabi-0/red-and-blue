@@ -1,4 +1,5 @@
 import './end.css'
+import { useState } from 'react'
 
 function checkWin(state) {
 	var i;
@@ -24,9 +25,10 @@ function checkWin(state) {
 	return [0, 0];
 }
 
-export default function End({boardState}) {
+export default function End({boardState, hideStart, fhndl}) {
 	var i;
 	var st = boardState;
+	var panelState = 1;
 	var state = Array(9);
 	for(i = 0; i < 9; i++) {
 		state[i] = (st&3);
@@ -41,10 +43,37 @@ export default function End({boardState}) {
 	else if(winPlayer === 2)
 		h_msg = "Blue wins!";
 
-	var play_msg = "Replay";
+	const [topBtnMsg, setTopBtnMsg] = useState("New\u00A0game");
+	const [topBtnCls, setTopBtnCls] = useState("end-btn-blue");
 
-	return (<div className='end-panel' style={{display: (winPlayer === 0 ? 'none' : 'block') }} >
-	<div className='end-content'><h1 className='end-msg'>{h_msg}</h1>
-	<button>{play_msg}</button>
-	</div><div className='end-transparency'></div></div>);
+	const [leftBtnMsg, setLeftBtnMsg] = useState("Rules");
+	const [leftBtnCls, setLeftBtnCls] = useState("end-btn-red");
+	const [rightBtnMsg, setRightBtnMsg] = useState("Contact");
+	const [rightBtnCls, setRightBtnCls] = useState("end-btn-red");
+
+	var panel_disp = (hideStart === true && winPlayer === 0 ? 'none' : 'block' );
+	var panel_transp = (hideStart === false ? 1 : 0.7);
+
+
+	function topBtnClick() {
+		if(panelState === 1) {
+			panelState = 2;
+			setTopBtnMsg("Play\u00A0with\u00A0bot");
+			setTopBtnCls("end-btn-red");
+			setLeftBtnMsg('-');
+			setRightBtnMsg("-");
+			setLeftBtnCls('end-btn-blue')
+			setRightBtnCls("end-btn-blue");
+		}
+		else if(panelState === 2) {
+			fhndl[0]();
+		}
+	}
+
+	return (<div className='end-panel' style={{display: panel_disp }} >
+	<div className='end-content'><h1 className='end-msg'>{h_msg}</h1><br />
+	<button id="btn-top" className={topBtnCls} onClick={topBtnClick} >{topBtnMsg}</button>
+	<button id="btn-left" className={leftBtnCls}>{leftBtnMsg}</button>
+	<button id="btn-right" className={rightBtnCls}>{rightBtnMsg}</button>
+	</div><div className='end-transparency' style={{opacity: panel_transp}} ></div></div>);
 }
