@@ -1,4 +1,31 @@
 
 .end-panel {
-	display: none;
+	z-index:100;
+}
+
+.end-panel, .end-transparency {
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+}
+
+.end-content {
+	position:absolute;
+	top:10%;
+	left:10%;
+	width:80%;
+	height:80%;
+	z-index:110;
+}
+
+.end-msg {
+	text-align: center;
+}
+
+.end-transparency{
+	background-color: white;
+	opacity:0.5;
+	z-index:101;
 }

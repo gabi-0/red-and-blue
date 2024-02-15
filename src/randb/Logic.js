@@ -43,5 +43,5 @@ export default function Logic() {
 	}
 
 	return (<div className='board-container'><Board board_st={displayState} fhndl={[cellClick,cellMouseEnter,cellMouseLeave]} player={play} />
-	<End boardState={boardState}/></div>);
+	<End boardState={boardState} /></div>);
 }
