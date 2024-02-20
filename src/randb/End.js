@@ -1,7 +1,9 @@
 import './end.css'
 import { useState } from 'react'
+import { getAvaiableSpots } from './Logic'
 
-function checkWin(state) {
+
+function checkWin(state, intState) {
 	var i;
 	for(i = 0; i < 3; i++) { // check win on lines
 		var r = i*3;
@@ -22,6 +24,8 @@ function checkWin(state) {
 		if(state[2] === state[4] && state[4] === state[6]) return [state[4], 31];
 	}
 
+	var spots = getAvaiableSpots(intState);
+	if(spots.length === 0) return [-1, -1];
 	return [0, 0];
 }
 
@@ -36,7 +40,7 @@ export default function End({boardState, fhndl}) {
 	}
 
 	const [panelState, setPanelState] = useState(1);
-	var [winPlayer, winPlace] = checkWin(state);
+	var [winPlayer, winPlace] = checkWin(state, boardState);
 
 	var h_msg = "Red - and - blue";
 	if(winPlayer) {
@@ -46,6 +50,8 @@ export default function End({boardState, fhndl}) {
 			h_msg = "Red wins!"+ winPlace;
 		else if(winPlayer === 2)
 			h_msg = "Blue wins!"+ winPlace;
+		else if(winPlayer === -1)
+			h_msg = "Draw";
 	}
 
 	var topBtnMsg = ("New\u00A0game");
@@ -68,7 +74,7 @@ export default function End({boardState, fhndl}) {
 	function topBtnClick() {
 		if(panelState === 1)
 			setPanelState(2);
-		else if(panelState === 2 || panelState === 11) {
+		else if(panelState === 2 || panelState === 11) { // start game
 			fhndl[0]();
 			setPanelState(0);
 		}

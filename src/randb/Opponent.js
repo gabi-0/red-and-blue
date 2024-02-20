@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { getAvaiableSpots, playerMoves } from './Logic'
 
 
-export default function Opponent({boardState, fhndl}) {
+export default function Opponent({boardState, roomID, fhndl}) {
 
 	var setPlayer = fhndl[0];
 	var setPlayerFirst = fhndl[1];
@@ -11,6 +11,8 @@ export default function Opponent({boardState, fhndl}) {
 	const oppon = useRef(0);
 	const playerFirst = useRef(0);
 	const oldBoardSt = useRef(0);
+	const oldRoomId = useRef(1);
+	const timer = useRef(-1);
 
 	useEffect(() => {
 		if(boardState === oldBoardSt.current) return;
@@ -26,10 +28,20 @@ export default function Opponent({boardState, fhndl}) {
 			console.log("new game: "+ player.current +"; playerFirst: "+ playerFirst.current);
 		}
 		if(boardState >= 16777216 / 2) return;
+		if(oldRoomId.current !== roomID) {
+			oldRoomId.current = roomID;
+			if(timer.current > 0) {
+				clearTimeout(timer.current);
+				timer.current = -1;
+			}
+		}
 
-		var spots = getAvaiableSpots(boardState);
 		if(playerMoves(boardState, playerFirst.current) === false) {
-			setTimeout(() => {
+			console.log("thinking... @ "+ roomID);
+			timer.current = setTimeout(() => {
+				var spots = getAvaiableSpots(boardState);
+				if(spots.length === 0) return;
+
 				var indx = Math.floor(Math.random() * spots.length);
 				var place = spots[indx];
 				cellClick(place, oppon.current);
@@ -37,6 +49,6 @@ export default function Opponent({boardState, fhndl}) {
 			}, 1000);
 		}
 
-	}, [boardState, setPlayer, setPlayerFirst, cellClick]);
+	}, [boardState, roomID, setPlayer, setPlayerFirst, cellClick]);
 	return (<></>);
 }

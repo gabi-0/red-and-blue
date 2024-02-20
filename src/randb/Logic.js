@@ -29,6 +29,7 @@ export default function Logic() {
 	const [displayState,setDisplayState] = useState(0);
 	const [play, setPlay] = useState(1);
 	const [playerFirst, setPlayerFirst] = useState(0);
+	const [roomID, setRoomId] = useState(0);
 
 	function changeBits(seed, id, state) {
 		var neg = ~(3 << (id*2));
@@ -43,6 +44,9 @@ export default function Logic() {
 	}
 
 	function btnStart() {
+		var rNr = parseInt(roomID);
+		if(isNaN(rNr) === false)
+			setRoomId(rNr + 1);
 		setBoardState(0);
 		setDisplayState(0);
 	}
@@ -72,6 +76,6 @@ export default function Logic() {
 	<BoardTop boardState={boardState} player={play} playerFirst={playerFirst} />
 	<Board boardSt={boardState} dispBoard={displayState}
 			fhndl={[cellClick,cellMouseEnter,cellMouseLeave]} player={play} playerFirst={playerFirst} />
-	<Opponent boardState={boardState} fhndl={[setPlay, setPlayerFirst, cellClick]} />
+	<Opponent boardState={boardState} roomID={roomID} fhndl={[setPlay, setPlayerFirst, cellClick]} />
 	<End boardState={boardState} fhndl={[btnStart]} /></div>);
 }

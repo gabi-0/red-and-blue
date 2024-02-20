@@ -2,6 +2,7 @@
 import { playerMoves } from "./Logic";
 
 
+
 export default function BoardTop({boardState, player, playerFirst}) {
 
 	var pMv = playerMoves(boardState, playerFirst);
