@@ -1,7 +1,16 @@
 
+
 .chat-container {
-	display: inline-block;
-	height: 75vmin;
-	width: 45vmin;
-	margin-left:10vmin;
+	display: none;
+}
+
+@media screen and (min-width: 980px) {
+	.chat-container {
+		display: inline-block;
+		/* height: 75vmin;
+		width: 45vmin; */
+		width:35vw;
+		height:35vw;
+		margin-left:10vmin;
+	}
 }

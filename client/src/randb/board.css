@@ -1,14 +1,39 @@
 
+
+@media screen and (min-width: 680px) {
+	table.board {
+		width:75vmin;
+		height:75vmin;
+	}
+}
+
 .board-container {
 	display:inline-block;
 	position:relative;
 }
 
 table.board {
-	width:65vmin;
-	height:65vmin;
 	cursor:pointer;
+	min-width:20rem;
+	min-height:20rem;
+	max-width:85vmin;
+	max-height:85vmin;
 	background-color: #EFEFEF;
+	border:none;
+	border-collapse:collapse;
+}
+
+.board tr:first-child td {
+	border-top:none;
+}
+.board tr:last-child td {
+	border-bottom:none;
+}
+.board tr td:first-child {
+	border-left:none;
+}
+.board tr td:last-child {
+	border-right:none;
 }
 
 table.board-wait {
@@ -16,7 +41,7 @@ table.board-wait {
 	cursor:not-allowed !important;
 }
 
-table.board, td {
+td {
 	border: 2px solid #000;
 	border-collapse: collapse;
 }
@@ -40,12 +65,12 @@ v1 02394a 013343
 
 
 .piece_triangle {
-	width: 62px;
-	height: 62px;
+	width:5rem;
+	height:5rem;
 }
 .piece_square {
-	width: 80px;
-	height: 80px;
+	width:6rem;
+	height:6rem;
 }
 
 .board_cell img {
