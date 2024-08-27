@@ -1,9 +1,18 @@
 FROM node:iron-bookworm
 
-WORKDIR /react-randb/
-COPY public/ /react-randb/public
-COPY src/ /react-randb/src
-COPY package.json /react-randb/
+RUN mkdir -p /usr/src/app
 
-RUN npm install
-CMD ["npm", "start"]
+WORKDIR /usr/src/app
+
+COPY . .
+
+ENV PYTHONPATH=${PYTHONPATH}:${PWD}
+
+ENV PORT 3000
+
+
+RUN npm install -g serve
+RUN npm run build
+
+
+CMD ["serve", "-s", "-l", "3000", "./build"]
